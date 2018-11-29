@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "889831027516",
+    "firebase_url": "https://granestadia.firebaseio.com",
+    "project_id": "granestadia",
+    "storage_bucket": "granestadia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889831027516:android:cf1a5dd1618de6f1",
+        "android_client_info": {
+          "package_name": "com.hackcathon.nica.granestadia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889831027516-1kasdb0eoonpb8nrfna2psts6mcgrd53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa0cq-15a1KwEYGSu5Xmc5Nihf6Ok43V8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GranEstadia</string>
+    <string name="facebook_app_id">287251448798707</string> <string name="fb_login_protocol_scheme">fb287251448798707</string>
+</resources>
