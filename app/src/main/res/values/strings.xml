@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">GranEstadia</string>
-    <string name="facebook_app_id">287251448798707</string> <string name="fb_login_protocol_scheme">fb287251448798707</string>
+    <string name="facebook_app_id">287251448798707</string>
+    <string name="fb_login_protocol_scheme">fb287251448798707</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="seccion_1">Menu1</string>
+    <string name="seccion_2">Menu2</string>
+    <string name="seccion_3">Menu3</string>
+    <string name="otras_opciones">Menu4</string>
+    <string name="opcion_1">Menu5</string>
+    <string name="opcion_2">Menu6</string>
 </resources>
