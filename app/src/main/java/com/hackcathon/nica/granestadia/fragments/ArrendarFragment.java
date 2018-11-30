@@ -105,6 +105,14 @@ public class ArrendarFragment extends Fragment implements View.OnClickListener {
 
                         Log.v("Repuesta: ", response);
 
+                        if (response.equals("true")){
+                            Toast.makeText(getContext(),"Habitacion Registrada!",Toast.LENGTH_LONG).show();
+                            ChangeFragment(new MapFragment());
+                        }
+                        else {
+                            Toast.makeText(getContext(),"Problema en el registro!",Toast.LENGTH_LONG).show();
+                        }
+
 
                     }
                 },
