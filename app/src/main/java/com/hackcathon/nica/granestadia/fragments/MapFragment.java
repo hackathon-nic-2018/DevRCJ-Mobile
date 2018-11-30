@@ -3,7 +3,10 @@ package com.hackcathon.nica.granestadia.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +24,10 @@ import com.hackcathon.nica.granestadia.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapFragment extends Fragment implements OnMapReadyCallback {
+public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
+    private FloatingActionButton btSearch;
 
     public MapFragment() {
         // Required empty public constructor
@@ -36,6 +40,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_map, container, false);
         ((MainActivity) getActivity()).setActionBarTitle("granEstadia");
+
+        MainActivity.updatePage("Mapa");
+
+        btSearch = root.findViewById(R.id.float_btnSearch);
+
+        btSearch.setOnClickListener(this);
 
         return root;
     }
@@ -73,5 +83,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onResume() {
         super.onResume();
         ((MainActivity) getActivity()).setActionBarTitle("granEstadia");
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        ChangeFragment(new BuscarFragment());
+
+    }
+
+    private void ChangeFragment(Fragment fragment){
+        FragmentManager fmanager = getFragmentManager();
+        FragmentTransaction ftransaction = fmanager.beginTransaction();
+        ftransaction.replace(R.id.content_frame, fragment).addToBackStack(null).commit();
     }
 }

@@ -31,5 +31,5 @@
     <string name="precioPiscina">0.00</string>
     <string name="descripcionTxt">Descripcion del cuarto y localidad en donde se ubica</string>
     <string name="condicionesTxt">Condiciones que el inquilino debera de suir en la casa</string>
-    <string name="ofertaBtn">Ofertar</string>
+    <string name="ofertaBtn">Arrendar</string>
 </resources>

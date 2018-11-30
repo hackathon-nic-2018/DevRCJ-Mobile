@@ -7,91 +7,30 @@
     tools:layout_editor_absoluteY="81dp">
 
     <EditText
-        android:id="@+id/departamentoTxt"
-        style="@style/Widget.AppCompat.AutoCompleteTextView"
-        android:layout_width="167dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/departamento"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/ciudadTxt"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/ciudadTxt"
-        android:layout_width="167dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/ciudad"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/departamentoTxt"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/barrioTxt"
-        android:layout_width="139dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/barrio"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/pReferenciaTxt"
-        app:layout_constraintHorizontal_bias="0.439"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/departamentoTxt"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/precioTxt"
+        android:id="@+id/edt_precio"
         android:layout_width="100dp"
         android:layout_height="43dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="68dp"
         android:ems="10"
         android:hint="@string/precio"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/fotos"
-        app:layout_constraintTop_toBottomOf="@+id/barrioTxt"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/pReferenciaTxt"
-        android:layout_width="183dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/punto_de_referencia"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ciudadTxt"
+        app:layout_constraintTop_toBottomOf="@+id/edt_direccion"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/fotos"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:layout_marginEnd="9dp"
         android:layout_marginStart="08dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="9dp"
         android:text="@string/agregar_fotos_4_requeridas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pReferenciaTxt"
+        app:layout_constraintTop_toBottomOf="@+id/edt_direccion"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -147,236 +86,71 @@
         app:srcCompat="@color/colorAccent"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/otros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/otros_servicios"
-        app:layout_constraintEnd_toStartOf="@+id/toggleButton2"
-        app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/precioTxt"
-        tools:ignore="MissingConstraints,UnknownId" />
-
-    <TextView
-        android:id="@+id/cordoba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/c"
-        app:layout_constraintBottom_toTopOf="@+id/otros"
-        app:layout_constraintEnd_toStartOf="@+id/precioTxt"
-        app:layout_constraintTop_toBottomOf="@+id/barrioTxt"
-        app:layout_constraintVertical_bias="0.218" />
-
-    <Switch
-        android:id="@+id/editar"
-        android:layout_width="57dp"
-        android:layout_height="15dp"
-        android:layout_margin="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:lineSpacingExtra="8sp"
-        android:padding="0dp"
-        android:splitTrack="false"
-        android:switchMinWidth="@android:dimen/app_icon_size"
-        android:switchPadding="@android:dimen/app_icon_size"
-        android:textSize="12sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/otrosServicios"
-        app:layout_constraintEnd_toStartOf="@+id/imagen1"
-        app:layout_constraintHorizontal_bias="0.183"
-        app:layout_constraintStart_toEndOf="@+id/otros"
-        app:layout_constraintTop_toBottomOf="@+id/precioTxt"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/otrosServicios"
-        android:layout_width="184dp"
-        android:layout_height="153dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/imagen3"
-        app:layout_constraintHorizontal_bias="0.242"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otros">
-
-        <EditText
-            android:id="@+id/precioPiscina"
-            android:layout_width="66dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="@string/precioCable"
-            android:inputType="textPersonName"
-            android:padding="5dp"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.724"
-            app:layout_constraintStart_toEndOf="@+id/piscina"
-            app:layout_constraintTop_toBottomOf="@+id/precioCable"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/precioCable"
-            android:layout_width="68dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="@string/precioPiscina"
-            android:inputType="textPersonName"
-            android:padding="5dp"
-            android:paddingBottom="15dp"
-            android:paddingEnd="15dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="25dp"
-            android:paddingStart="5dp"
-            android:paddingTop="25dp"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/otrosServicios"
-            app:layout_constraintStart_toEndOf="@+id/cable"
-            app:layout_constraintTop_toBottomOf="@+id/servicioInternet" />
-
-        <TextView
-            android:id="@+id/comida"
-            android:layout_width="60dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/comida_c"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/internet"
-            android:layout_width="wrap_content"
-            android:layout_height="033dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:paddingHorizontal="0dp"
-            android:paddingVertical="0dp"
-            android:text="@string/internet_c"
-            app:layout_constraintEnd_toStartOf="@+id/servicioInternet"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/comida" />
-
-        <TextView
-            android:id="@+id/cable"
-            android:layout_width="60dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/cable_c"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/internet" />
-
-        <TextView
-            android:id="@+id/piscina"
-            android:layout_width="65dp"
-            android:layout_height="32dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/piscina_c"
-            android:textAlignment="gravity"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cable"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/servicioComida"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="60dp"
-            android:layout_height="33dp"
-            android:ems="10"
-            android:hint="@string/precioComida"
-            android:inputType="textEmailSubject|numberDecimal"
-            android:paddingHorizontal="6dp"
-            android:paddingVertical="0dp"
-            android:singleLine="true"
-            android:textAlignment="textStart"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toEndOf="@+id/comida"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/servicioInternet"
-            style="@android:style/Widget.DeviceDefault.EditText"
-            android:layout_width="70dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:hint="@string/precioInternet"
-            android:inputType="numberDecimal"
-            android:paddingHorizontal="6dp"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/servicioComida" />
-    </android.support.constraint.ConstraintLayout>
-
     <EditText
-        android:id="@+id/descripcionTxt"
-        android:layout_width="203dp"
+        android:id="@+id/edt_descripcion"
+        android:layout_width="157dp"
         android:layout_height="135dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="200dp"
         android:ems="10"
         android:hint="@string/descripcionTxt"
         android:inputType="textMultiLine"
         android:lines="@android:integer/config_mediumAnimTime"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imagen3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otrosServicios" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_precio"
+        app:layout_constraintVertical_bias="0.232" />
 
     <EditText
-        android:id="@+id/condicionesTxt"
-        android:layout_width="155dp"
+        android:id="@+id/edt_condiciones"
+        android:layout_width="269dp"
         android:layout_height="132dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/condicionesTxt"
         android:inputType="textMultiLine"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/descripcionTxt"
+        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagen4" />
 
     <Button
-        android:id="@+id/ofertarBtn"
+        android:id="@+id/btn_oferta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/colorPrimary"
         android:text="@string/ofertaBtn"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/descripcionTxt"
-        app:layout_constraintTop_toBottomOf="@+id/condicionesTxt" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_condiciones"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/edt_direccion"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese lel departamento, ciudad, municipio y barrio en el que se encuentra el inmueble"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

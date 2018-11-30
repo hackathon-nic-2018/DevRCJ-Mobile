@@ -57,6 +57,8 @@ public class FragmentUsuario extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_usuario, container, false);
 
+        MainActivity.updatePage("Perfil");
+
         pref = getActivity().getSharedPreferences("MisPreferencias", MODE_PRIVATE);
 
         editor = pref.edit();

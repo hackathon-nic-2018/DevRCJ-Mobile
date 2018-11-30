@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView nombreUsuario;
     private SharedPreferences pref;
     private ImageView userImage;
+    public static String page;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,15 +150,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        int count = getFragmentManager().getBackStackEntryCount();
 
-        if (count == 0) {
+        if (page.equals("Mapa")){
             super.onBackPressed();
-            //additional code
-        } else {
-            getFragmentManager().popBackStack();
         }
 
+    }
+
+    public static void updatePage(String pagina){
+        page = pagina;
     }
 
 
