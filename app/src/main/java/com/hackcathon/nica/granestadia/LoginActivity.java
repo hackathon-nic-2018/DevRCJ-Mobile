@@ -2,6 +2,7 @@ package com.hackcathon.nica.granestadia;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -38,13 +39,31 @@ public class LoginActivity extends AppCompatActivity {
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-    private ImageView userImg;
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
+
+        pref = this.getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+        editor = pref.edit();
+
+
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+
+        if (isLoggedIn){
+            Intent i = new Intent( getApplicationContext(), MainActivity.class);
+            startActivity(i);
+            finish();
+        }
+        else {
+            Toast.makeText(this,"No estas logeado",Toast.LENGTH_SHORT).show();
+        }
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
@@ -71,8 +90,6 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setReadPermissions(Arrays.asList(
                 "public_profile", "email"));
-
-        userImg = findViewById(R.id.img_user2);
 
 
 
@@ -114,6 +131,8 @@ public class LoginActivity extends AppCompatActivity {
                                     GraphResponse response) {
                                 Log.v("LoginActivity Response ", response.toString());
 
+
+
                                 try {
                                     String name = object.getString("name");
 
@@ -128,7 +147,14 @@ public class LoginActivity extends AppCompatActivity {
 
                                     //info.setText("Nombre: " + name + "\n" + "e-mail: " + FEmail);
 
-                                    Intent i = new Intent( getApplicationContext(), PerfilActivity.class);
+                                    editor.putString("nombre",name);
+                                    editor.putString("email",FEmail);
+                                    editor.putString("url_img","https://graph.facebook.com/" + FEid+ "/picture?type=large");
+                                    editor.putBoolean("isLogin",true);
+                                    editor.apply();
+
+
+                                    Intent i = new Intent( getApplicationContext(), MainActivity.class);
                                     i.putExtra("nombre", name);
                                     i.putExtra("email", FEmail);
                                     i.putExtra("id", FEid);

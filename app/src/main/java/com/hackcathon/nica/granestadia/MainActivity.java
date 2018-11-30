@@ -1,5 +1,6 @@
 package com.hackcathon.nica.granestadia;
 
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -9,9 +10,16 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.hackcathon.nica.granestadia.fragments.Fragment1;
 import com.hackcathon.nica.granestadia.fragments.Fragment2;
 import com.hackcathon.nica.granestadia.fragments.Fragment3;
+import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private Toolbar appbar;
+    private TextView nombreUsuario;
+    private SharedPreferences pref;
+    private ImageView userImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +39,31 @@ public class MainActivity extends AppCompatActivity {
         appbar = findViewById(R.id.appbar);
         setSupportActionBar(appbar);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu);
+        Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.menu);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        pref = this.getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+
+        String txtNombre = pref.getString("nombre","name");
+        String url_img = pref.getString("url_img","url");
 
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
         navView = findViewById(R.id.navview);
+
+        View headerView = navView.getHeaderView(0);
+
+        nombreUsuario = headerView.findViewById(R.id.head_user);
+
+        userImage = headerView.findViewById(R.id.h_userImage);
+
+        nombreUsuario.setText(txtNombre);
+
+        Picasso.with(getApplicationContext())
+                .load(url_img)
+                .into(userImage);
 
         navView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -78,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-
 
 
 
