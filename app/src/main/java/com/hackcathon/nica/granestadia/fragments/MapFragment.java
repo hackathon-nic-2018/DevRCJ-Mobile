@@ -15,6 +15,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.hackcathon.nica.granestadia.MainActivity;
 import com.hackcathon.nica.granestadia.R;
 
 /**
@@ -34,7 +35,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_map, container, false);
-
+        ((MainActivity) getActivity()).setActionBarTitle("granEstadia");
 
         return root;
     }
@@ -66,5 +67,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 .title("Marker in Sydney"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) getActivity()).setActionBarTitle("granEstadia");
     }
 }

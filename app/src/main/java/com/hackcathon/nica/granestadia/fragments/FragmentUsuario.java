@@ -4,7 +4,10 @@ package com.hackcathon.nica.granestadia.fragments;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.hackcathon.nica.granestadia.LoginActivity;
+import com.hackcathon.nica.granestadia.MainActivity;
 import com.hackcathon.nica.granestadia.R;
 import com.squareup.picasso.Picasso;
 
@@ -38,7 +42,7 @@ public class FragmentUsuario extends Fragment implements View.OnClickListener{
     private TextView userName, userEmail, userID;
     private String name, email, image, id;
     private EditText descUsuario, edadusuario, stCivil;
-    private Button btGuardar;
+    private Button btGuardar, btArrendar;
     private String txtNombre, correo, url_img, descrip, FBid,edadUsuario, civilUsuario;
 
 
@@ -62,10 +66,12 @@ public class FragmentUsuario extends Fragment implements View.OnClickListener{
         userEmail = root.findViewById(R.id.txt_email);
         descUsuario = root.findViewById(R.id.edt_descrip);
         btGuardar = root.findViewById(R.id.btn_guardar);
+        btArrendar = root.findViewById(R.id.btn_arrendar);
         edadusuario = root.findViewById(R.id.edt_edad);
         stCivil = root.findViewById(R.id.edt_civil);
 
         btGuardar.setOnClickListener(this);
+        btArrendar.setOnClickListener(this);
 
 
         txtNombre = pref.getString("nombre","name");
@@ -86,17 +92,41 @@ public class FragmentUsuario extends Fragment implements View.OnClickListener{
                 .load(url_img)
                 .into(userImage);
 
+        root.setFocusableInTouchMode(true);
+        root.requestFocus();
+        root.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                Log.i("Backs", "keyCode: " + keyCode);
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    Log.i("Backs", "onKey Back listener is working!!!");
+                    getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    ChangeFragment(new MapFragment());
+                    return true;
+                }
+                return false;
+            }
+        });
+
         return root;
     }
 
     @Override
     public void onClick(View v) {
-        editor.putString("user_desc",descUsuario.getText().toString());
-        editor.putString("edad_usuario",edadusuario.getText().toString());
-        editor.putString("estadoCivil",stCivil.getText().toString());
-        editor.apply();
-        //actualizarUsuario(txtNombre,url_img,correo,FBid,edadusuario.getText().toString(),stCivil.getText().toString(),descrip);
-        Toast.makeText(getContext(),"Cambios Guadados!",Toast.LENGTH_SHORT).show();
+
+        if(v.getId()==R.id.btn_guardar){
+
+            editor.putString("user_desc",descUsuario.getText().toString());
+            editor.putString("edad_usuario",edadusuario.getText().toString());
+            editor.putString("estadoCivil",stCivil.getText().toString());
+            editor.apply();
+            //actualizarUsuario(txtNombre,url_img,correo,FBid,edadusuario.getText().toString(),stCivil.getText().toString(),descrip);
+            Toast.makeText(getContext(),"Cambios Guadados!",Toast.LENGTH_SHORT).show();
+        }
+
+        if(v.getId()==R.id.btn_arrendar){
+            ChangeFragment(new ArrendarFragment());
+        }
 
     }
 
@@ -134,5 +164,16 @@ public class FragmentUsuario extends Fragment implements View.OnClickListener{
     }
 
 
+    private void ChangeFragment(Fragment fragment){
+        FragmentManager fmanager = getFragmentManager();
+        assert fmanager != null;
+        FragmentTransaction ftransaction = fmanager.beginTransaction();
+        ftransaction.replace(R.id.content_frame, fragment).addToBackStack(null).commit();
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) getActivity()).setActionBarTitle("Mi Perfil");
+    }
 }

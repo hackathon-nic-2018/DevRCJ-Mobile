@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navView;
-    private Toolbar appbar;
+    public static Toolbar appbar;
     private TextView nombreUsuario;
     private SharedPreferences pref;
     private ImageView userImage;
@@ -138,6 +138,26 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fmanager = getSupportFragmentManager();
         FragmentTransaction ftransaction = fmanager.beginTransaction();
         ftransaction.replace(R.id.content_frame, fragment).addToBackStack(null).commit();
+    }
+
+
+
+    public void setActionBarTitle(String your_title) {
+        getSupportActionBar().setTitle(your_title);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getFragmentManager().popBackStack();
+        }
+
     }
 
 
