@@ -1,5 +1,6 @@
 package com.hackcathon.nica.granestadia;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,9 +17,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
 import com.hackcathon.nica.granestadia.fragments.Fragment1;
 import com.hackcathon.nica.granestadia.fragments.Fragment2;
-import com.hackcathon.nica.granestadia.fragments.Fragment3;
+import com.hackcathon.nica.granestadia.fragments.FragmentUsuario;
 import com.hackcathon.nica.granestadia.fragments.MapFragment;
 import com.squareup.picasso.Picasso;
 
@@ -77,23 +79,27 @@ public class MainActivity extends AppCompatActivity {
                         Fragment fragment = null;
 
                         switch (menuItem.getItemId()) {
-                            case R.id.menu_seccion_1:
-                                fragment = new Fragment1();
+                            case R.id.menu_mapa:
+                                fragment = new MapFragment();
                                 fragmentTransaction = true;
                                 break;
-                            case R.id.menu_seccion_2:
+                            case R.id.menu_favoritos:
                                 fragment = new Fragment2();
                                 fragmentTransaction = true;
                                 break;
-                            case R.id.menu_seccion_3:
-                                fragment = new Fragment3();
+                            case R.id.menu_reservaciones:
+                                fragment = new Fragment1();
                                 fragmentTransaction = true;
                                 break;
-                            case R.id.menu_opcion_1:
-                                Log.i("NavigationView", "Pulsada opción 1");
+                            case R.id.menu_usuario:
+                                fragment = new FragmentUsuario();
+                                fragmentTransaction = true;
                                 break;
-                            case R.id.menu_opcion_2:
+                            case R.id.menu_salir:
                                 Log.i("NavigationView", "Pulsada opción 2");
+                                LoginManager.getInstance().logOut();
+                                Intent i = new Intent( getApplicationContext(), LoginActivity.class);
+                                startActivity(i);
                                 break;
                         }
 

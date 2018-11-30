@@ -1,17 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/menu_seccion_1"
-            android:icon="@drawable/config"
-            android:title="@string/seccion_1"/>
+            android:id="@+id/menu_mapa"
+            android:icon="@drawable/mapa"
+            android:title="@string/seccion_1" />
         <item
-            android:id="@+id/menu_seccion_2"
-            android:icon="@drawable/config"
-            android:title="@string/seccion_2"/>
+            android:id="@+id/menu_favoritos"
+            android:icon="@drawable/favorito"
+            android:title="@string/seccion_2" />
         <item
-            android:id="@+id/menu_seccion_3"
-            android:icon="@drawable/config"
-            android:title="@string/seccion_3"/>
+            android:id="@+id/menu_reservaciones"
+            android:icon="@drawable/hotel"
+            android:title="@string/seccion_3" />
     </group>
 
     <item
@@ -19,13 +19,13 @@
         android:title="@string/otras_opciones">
         <menu>
             <item
-                android:id="@+id/menu_opcion_1"
-                android:icon="@drawable/config"
-                android:title="@string/opcion_1"/>
+                android:id="@+id/menu_usuario"
+                android:icon="@drawable/account"
+                android:title="@string/opcion_1" />
             <item
-                android:id="@+id/menu_opcion_2"
-                android:icon="@drawable/config"
-                android:title="@string/opcion_2"/>
+                android:id="@+id/menu_salir"
+                android:icon="@drawable/logout"
+                android:title="@string/opcion_2" />
         </menu>
     </item>
 </menu>
