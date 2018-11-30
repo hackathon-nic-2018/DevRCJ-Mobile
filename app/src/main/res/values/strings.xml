@@ -7,7 +7,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="seccion_1">Mapa</string>
     <string name="seccion_2">Favoritos</string>
-    <string name="seccion_3">Reservaciones</string>
+    <string name="seccion_3">Notificaciones</string>
     <string name="otras_opciones">Ajustes de Usuario</string>
     <string name="opcion_1">Mi Perfil</string>
     <string name="opcion_2">Cerrar Sesion</string>

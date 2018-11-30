@@ -4,6 +4,7 @@ package com.hackcathon.nica.granestadia.fragments;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.hackcathon.nica.granestadia.LoginActivity;
 import com.hackcathon.nica.granestadia.R;
 import com.squareup.picasso.Picasso;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.hackcathon.nica.granestadia.datos.Info.ServUrlUpdate;
 
 
 public class FragmentUsuario extends Fragment implements View.OnClickListener{
@@ -28,8 +37,9 @@ public class FragmentUsuario extends Fragment implements View.OnClickListener{
     private ImageView userImage;
     private TextView userName, userEmail, userID;
     private String name, email, image, id;
-    private EditText descUsuario;
+    private EditText descUsuario, edadusuario, stCivil;
     private Button btGuardar;
+    private String txtNombre, correo, url_img, descrip, FBid,edadUsuario, civilUsuario;
 
 
     public FragmentUsuario() {
@@ -52,18 +62,25 @@ public class FragmentUsuario extends Fragment implements View.OnClickListener{
         userEmail = root.findViewById(R.id.txt_email);
         descUsuario = root.findViewById(R.id.edt_descrip);
         btGuardar = root.findViewById(R.id.btn_guardar);
+        edadusuario = root.findViewById(R.id.edt_edad);
+        stCivil = root.findViewById(R.id.edt_civil);
 
         btGuardar.setOnClickListener(this);
 
 
-        String txtNombre = pref.getString("nombre","name");
-        String url_img = pref.getString("url_img","url");
-        String correo = pref.getString("email","correo");
-        String descrip = pref.getString("user_desc","");
+        txtNombre = pref.getString("nombre","name");
+        url_img = pref.getString("url_img","url");
+        correo = pref.getString("email","correo");
+        descrip = pref.getString("user_desc","");
+        FBid = pref.getString("Fid","id");
+        edadUsuario = pref.getString("edad_usuario","");
+        civilUsuario = pref.getString("estadoCivil","");
 
         userName.setText(txtNombre);
         userEmail.setText(correo);
         descUsuario.setText(descrip);
+        edadusuario.setText(edadUsuario);
+        stCivil.setText(civilUsuario);
 
         Picasso.with(getContext())
                 .load(url_img)
@@ -75,9 +92,47 @@ public class FragmentUsuario extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         editor.putString("user_desc",descUsuario.getText().toString());
+        editor.putString("edad_usuario",edadusuario.getText().toString());
+        editor.putString("estadoCivil",stCivil.getText().toString());
         editor.apply();
+        //actualizarUsuario(txtNombre,url_img,correo,FBid,edadusuario.getText().toString(),stCivil.getText().toString(),descrip);
         Toast.makeText(getContext(),"Cambios Guadados!",Toast.LENGTH_SHORT).show();
 
     }
+
+    private void actualizarUsuario(String nombre, String foto, String email, String Fid, String edad, String civil, String desctip){
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                ServUrlUpdate+"nombres="+nombre+"&apellidos="+Fid+"&email="+email+"&foto="+foto+"&edad="+edad+"&estadocivil="+civil+"&descripcion="+desctip,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        //Toast.makeText(LoginActivity.this,"Registro exitoso...",Toast.LENGTH_LONG).show();
+
+                        Log.v("Repuesta: ", response);
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(getContext(),error.toString(),Toast.LENGTH_LONG).show();
+                        Log.i("Error: ", error.toString());
+                    }
+                }){
+
+
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+    }
+
+
 
 }

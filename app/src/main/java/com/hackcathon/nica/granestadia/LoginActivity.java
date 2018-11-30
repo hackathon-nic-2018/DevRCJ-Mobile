@@ -13,6 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -31,6 +37,10 @@ import org.json.JSONObject;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.hackcathon.nica.granestadia.datos.Info.ServUrlInsert;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -150,8 +160,18 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString("nombre",name);
                                     editor.putString("email",FEmail);
                                     editor.putString("url_img","https://graph.facebook.com/" + FEid+ "/picture?type=large");
+                                    editor.putString("Fid",FEid);
                                     editor.putBoolean("isLogin",true);
                                     editor.apply();
+
+                                    if (pref.getBoolean("firstrun", true)) {
+                                        // Do first run stuff here then set 'firstrun' as false
+                                        // using the following line to edit/commit prefs
+                                        pref.edit().putBoolean("firstrun", false).apply();
+                                        registrarUsuario(name,"https://graph.facebook.com/" + FEid+ "/picture?type=large",FEmail,FEid);
+                                    }
+
+
 
 
                                     Intent i = new Intent( getApplicationContext(), MainActivity.class);
@@ -198,6 +218,40 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+    private void registrarUsuario(String nombre, String foto, String email, String Fid){
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, ServUrlInsert+"nombres="+nombre+"&apellidos="+Fid+"&email="+email+"&foto="+foto,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        //Toast.makeText(LoginActivity.this,"Registro exitoso...",Toast.LENGTH_LONG).show();
+
+                        Log.v("Repuesta: ", response);
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        Log.i("Error: ", error.toString());
+                    }
+                }){
+
+
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+
 
 }
 
